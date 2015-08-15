@@ -57,5 +57,69 @@ WebPack核心功能如下
 		}
 	};
 	
+### Step3 建立範例
+
+`app/js` 建立`boot.jsx`。
+
+	var React = require('react');
+
+	(function(){
+		console.log('start');
+		var MainApp = React.createFactory(require('../views/MainApp.jsx'));
 	
+		React.render(MainApp(),document.body);
+
+	})();
+
+	
+ `app/views`建立`MainApp.jsx`。
  
+	var React = require('react');
+	var Header = require('./Header');
+
+	var MainApp = React.createClass({
+
+		render:function(){
+			return(
+				<div>
+					<Header/>
+					bla.bla.bla.bla
+				</div>
+			);
+		}
+	});
+
+	module.exports = MainApp;
+
+`app/views`建立`Header.jsx`。
+
+	var React = require('react');
+
+	var Header = React.createClass({
+	
+		render:function(){
+			return (
+				<h2>Header</h2>
+			);
+		}
+
+	});
+
+	module.exports = Header;
+	
+建立`index.html`。
+
+	<!DOCTYPE html>
+	<html class='no-js'>
+		<head>
+			<title></title>
+		</head>
+		<body>
+			<script src="bundle.js"></script>
+		</body>
+	</html>
+
+###Step4 執行webpack產生bundle.js
+執行下列指令，webpack會自動將jsx轉換生js，最後產生出`bundle.js`。
+
+	webpack
